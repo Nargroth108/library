@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="app.js" defer></script>
 </head>
 <body>
+    <dialog id="dialog">
+        <form method="dialog">
+            <div>
+                <label for="title-input">Title:<input name="ti" type="text" id="title-input" class="form-input" required /></label>
+                <label for="author-input">Author:<input name="au" type="text" id="author-input" class="form-input"  required /></label>
+                <label for="pages-input">Number of pages:<input name="pa" type="number" id="pages-input" class="form-input"  required /></label>
+                <label for="isRead">Have you read it? <select name="isRead" id="isRead" class="form-input"  required>
+                    <option value=true>Yes</option>
+                    <option value=false>No</option>
+                </select></label>
+            </div>
+        <p>
+            <input type="submit" id="close-button" value="Close" formnovalidate />
+            <input type="submit" id="submit-button" value="Submit" />
+        </p>
+        </form>
+    </dialog>
+    <div>
+        <button id="show-dialog">NEW BOOK</button>
+    </div>
+    <output></output>
     
+    
+    <div class="book-container"></div>
+
 </body>
 </html>
