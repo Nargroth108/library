@@ -12,11 +12,13 @@ const myLibrary = [
 	},
 ];
 
-function Book(title, author, pages, isRead) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.isRead = isRead;
+class Book {
+	constructor(title, author, pages, isRead) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.isRead = isRead;
+	}
 }
 
 function clearAllCards() {
@@ -137,3 +139,10 @@ submitBtn.addEventListener('click', () => {
 	readButtonToggle();
 	dialog.close();
 });
+
+// git push library-class
+// git checkout main
+// git merge library-class
+// git push origin main
+// git branch -d library-class
+// git push origin --delete library-class
