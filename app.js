@@ -1,6 +1,5 @@
 const bookContainer = document.querySelector('.book-container');
 const showBtn = document.getElementById('show-dialog');
-const submitBtn = document.getElementById('submit-button');
 const dialog = document.getElementById('dialog');
 const form = document.getElementById('form');
 
