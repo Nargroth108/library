@@ -9,15 +9,30 @@
 </head>
 <body>
     <dialog id="dialog">
-        <form method="dialog">
+        <form id="form" method="dialog" novalidate>
             <div>
-                <label for="title-input">Title:<input name="ti" type="text" id="title-input" class="form-input" required /></label>
-                <label for="author-input">Author:<input name="au" type="text" id="author-input" class="form-input"  required /></label>
-                <label for="pages-input">Number of pages:<input name="pa" type="number" id="pages-input" class="form-input"  required /></label>
-                <label for="isRead">Have you read it? <select name="isRead" id="isRead" class="form-input"  required>
-                    <option value=true>Yes</option>
-                    <option value=false>No</option>
-                </select></label>
+                <label for="title-input">
+                    <span>Title:</span>
+                    <input name="title-input" type="text" id="title-input" class="form-input" required />
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <label for="author-input">
+                    <span>Author:</span>
+                    <input name="author-input" type="text" id="author-input" class="form-input" required  />
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <label for="pages-input">
+                    <span>Number of pages:</span>
+                    <input name="pages-input" type="number" id="pages-input" class="form-input" required />
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <label for="isRead">
+                    <span>Have you read it? </span>
+                    <select name="isRead" id="isRead" class="form-input" >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </label>
             </div>
         <p>
             <input type="submit" id="close-button" value="Close" formnovalidate />
