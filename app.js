@@ -2,6 +2,7 @@ const bookContainer = document.querySelector('.book-container');
 const showBtn = document.getElementById('show-dialog');
 const submitBtn = document.getElementById('submit-button');
 const dialog = document.getElementById('dialog');
+const form = document.getElementById('form');
 
 const myLibrary = [
   {
@@ -129,17 +130,65 @@ removeBooks();
 
 readButtonToggle();
 
-submitBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const titleInput = document.getElementById('title-input').value;
-  const authorInput = document.getElementById('author-input').value;
-  const pagesInput = document.getElementById('pages-input').value;
-  const readInput = document.getElementById('isRead').value;
-  const book = new Book(titleInput, authorInput, pagesInput, readInput);
-  myLibrary.push(book);
-  clearAllCards();
-  displayBooksOnScreen();
-  removeBooks();
-  readButtonToggle();
-  dialog.close();
+const titleInput = document.getElementById('title-input');
+const titleInputError = titleInput.nextElementSibling;
+const authorInput = document.getElementById('author-input');
+const authorInputError = authorInput.nextElementSibling;
+const pagesInput = document.getElementById('pages-input');
+const pagesInputError = pagesInput.nextElementSibling;
+const readInput = document.getElementById('isRead');
+
+function showError(input, span, type) {
+  if (input.validity.valueMissing) {
+    // eslint-disable-next-line no-param-reassign
+    span.textContent = `You need to enter ${type}!`;
+    // eslint-disable-next-line no-param-reassign
+    span.className = 'error active';
+  }
+}
+
+titleInput.addEventListener('input', () => {
+  if (titleInput.validity.valid) {
+    titleInputError.textContent = '';
+    titleInputError.className = 'error';
+  } else {
+    showError(titleInput, titleInputError, 'a title');
+  }
+});
+authorInput.addEventListener('input', () => {
+  if (authorInput.validity.valid) {
+    authorInputError.textContent = '';
+    authorInputError.className = 'error';
+  } else {
+    showError(authorInput, authorInputError, 'an author');
+  }
+});
+pagesInput.addEventListener('input', () => {
+  if (pagesInput.validity.valid) {
+    pagesInputError.textContent = '';
+    pagesInputError.className = 'error';
+  } else {
+    showError(pagesInput, pagesInputError, 'a number of pages');
+  }
+});
+
+form.addEventListener('submit', (e) => {
+  if (!titleInput.validity.valid) {
+    showError(titleInput, titleInputError, 'a title');
+    e.preventDefault();
+  } else if (!authorInput.validity.valid) {
+    showError(authorInput, authorInputError, 'an author');
+    e.preventDefault();
+  } else if (!pagesInput.validity.valid) {
+    showError(pagesInput, pagesInputError, 'a number of pages');
+    e.preventDefault();
+  } else {
+    const book = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+    myLibrary.push(book);
+    clearAllCards();
+    displayBooksOnScreen();
+    removeBooks();
+    readButtonToggle();
+    dialog.close();
+  }
 });
